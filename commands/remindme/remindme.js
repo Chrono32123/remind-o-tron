@@ -63,7 +63,7 @@ module.exports = class RemindMe extends Command {
         let user = message.author; 
         message.react('⏰');
         let j = schedule.scheduleJob(scheduleString.trim(), function(){
-            message.channel.send(`${user}` + 'Reminder: ' + reminderString.trim());
+            message.channel.send('Reminder: ' + `${user} ` + reminderString.trim());
         }
         );
         message.react('☑');
