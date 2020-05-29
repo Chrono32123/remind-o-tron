@@ -59,10 +59,11 @@ module.exports = class RemindMe extends Command {
     run(message, {scheduleMins, scheduleHrs, scheduleDayOfMonth, scheduleMonth, scheduleDayOfWeek, reminderString}) {
         // build cron string
         let scheduleString = scheduleMins + " " + scheduleHrs + " " + scheduleDayOfMonth + " " + scheduleMonth + " " + scheduleDayOfWeek
-
+        // get user id to mention
+        let user = message.author; 
         message.react('⏰');
         let j = schedule.scheduleJob(scheduleString.trim(), function(){
-            message.reply('Reminder: ' + reminderString.trim());
+            message.channel.send(`${user}` + 'Reminder: ' + reminderString.trim());
         }
         );
         message.react('☑');
